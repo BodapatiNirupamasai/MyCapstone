@@ -4,7 +4,8 @@ from . import views
 appname = 'ordermatching'
 urlpatterns = [
     path("", views.home, name="home"),
-    path("signup/", views.signupView, name="signup"),
     path("signin/", views.signinView, name="signin"),
+    path('trade/',views.tradeView,name='trade'),
+    path("signup/", views.signupView, name="signup_url"),
 
 ]
