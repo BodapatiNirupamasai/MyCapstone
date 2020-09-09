@@ -7,13 +7,16 @@ def home(request):
 	return render(request, "home/home.html", {})
 
 def tradeView(request):
-    return render(request,'trade.html')
+    username = ""
+    if request.session.has_key('username'):
+      username = request.session['username']
+    return render(request,'trade.html',{'username' : username})
 
 def signinView(request):
     if request.method == 'POST':
         user_name = request.POST['username']
         pwd = request.POST['password']
-
+        request.session['username'] = user_name
         user_obj = UserSignup.objects.filter(username = user_name, password=pwd).exists()
         if user_obj :
             print("user object ecists")
@@ -31,6 +34,8 @@ def signupView(request):
         first_name = request.POST['firstname']
         last_name = request.POST['lastname']
         pwd = request.POST['password']
+
+        request.session['username'] = user_name
 
         if UserSignup.objects.filter(username=user_name).exists():
             print("Username Taken") # use toolkit to show it there(js, css etc)
