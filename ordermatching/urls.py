@@ -7,5 +7,6 @@ urlpatterns = [
     path("signin/", views.signinView, name="signin"),
     path('trade/',views.tradeView,name='trade'),
     path("signup/", views.signupView, name="signup_url"),
+    path("ajax/getUsers",views.getUsers,name='getUsers'),
 
 ]
